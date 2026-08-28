@@ -1,6 +1,14 @@
 import { Observation } from "../domain/entities/Observation";
 import { ObservationRepository } from "../domain/repositories/ObservationRepository";
 
+/**
+ * REPOSITÓRIO EM MEMÓRIA (InMemoryObservationRepository)
+ * 
+ * 💡 DICA PARA PROVA:
+ * Se o professor pedir o repositório mais simples/rápido de implementar na prova:
+ * 1. Crie um array privado: private items: Entity[] = [];
+ * 2. Implemente os métodos async: save(), findAll(), findById(), delete().
+ */
 export class InMemoryObservationRepository implements ObservationRepository {
     private observations: Observation[] = [];
     private static instance: InMemoryObservationRepository;
@@ -27,6 +35,3 @@ export class InMemoryObservationRepository implements ObservationRepository {
         this.observations = this.observations.filter(obs => obs.id !== id);
     }
 }
-
-//singleton = um unico objeto, construtur privado, só cria de dentro mesma, estatico e da classe, getinstace retorna a instancia da classe
-//async = utilizar um recurso que não está na aplicação

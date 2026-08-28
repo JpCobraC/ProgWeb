@@ -5,6 +5,11 @@ import { Coordinates } from "../value-objects/Coordinates";
  * 
  * Regra de Negócio: Representa o registro de observação capturado no campo.
  * Possui um ID único, foto, coordenadas (Value Object), data de criação e descrição opcional.
+ * 
+ * 💡 DICA PARA PROVA (Outros exemplos de Entidades):
+ * - Tarefa: (id, title, description, priority: Priority, done: boolean)
+ * - Produto: (id, name, price: Price, category: string)
+ * - Veiculo: (id, placa: Placa, modelo: string, ano: number)
  */
 export class Observation {
     public readonly id: string;

@@ -1,4 +1,5 @@
 import { AsyncStorageObservationRepository } from "../infra/AsyncStorageObservationRepository";
+import { InMemoryObservationRepository } from "../infra/InMemoryObservationRepository";
 
 import { DeleteObservation } from "../usecases/DeleteObservation";
 import { ListObservations } from "../usecases/ListObservations";
@@ -7,15 +8,17 @@ import { RegisterObservation } from "../usecases/RegisterObservation";
 /**
  * FACTORY / CONTAINER (Injeção de Dependência via Singleton)
  * 
- * Centraliza a instanciação do Repositório e dos Casos de Uso.
- * Permite usar em qualquer tela do app:
- * `container.registerObservation.execute(...)`
- * `container.listObservations.execute()`
- * `container.deleteObservation.execute(id)`
+ * 💡 DICA PARA PROVA:
+ * Para trocar de repositório na prova (ex: de AsyncStorage para InMemory):
+ * Basta trocar 'AsyncStorageObservationRepository.getInstance()' por 'InMemoryObservationRepository.getInstance()'.
+ * 
+ * Exemplo de acesso nas telas:
+ * container.registerObservation.execute({ ... })
+ * container.listObservations.execute()
  */
 class Container {
     private static instance: Container;
-    public readonly observationRepository: AsyncStorageObservationRepository;
+    public readonly observationRepository: AsyncStorageObservationRepository | InMemoryObservationRepository;
     public readonly registerObservation: RegisterObservation;
     public readonly listObservations: ListObservations;
     public readonly deleteObservation: DeleteObservation;
