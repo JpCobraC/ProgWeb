@@ -1,3 +1,18 @@
+/**
+ * TESTES UNITÁRIOS DE DOMÍNIO (Jest)
+ * 
+ * 📌 COMO RODAR OS TESTES NO TERMINAL:
+ *   npm test
+ *   ou:
+ *   npx jest
+ * 
+ * 💡 ESTRUTURA BÁSICA DE UM TESTE:
+ * - describe('Nome da Classe ou Módulo', () => { ... })
+ * - it('descrição do que deve acontecer', () => { ... })
+ * - expect(valor).toBe(resultadoEsperado)
+ * - expect(() => funcaoComErro()).toThrow('Mensagem de erro')
+ */
+
 import { Observation } from "@/src/domain/entities/Observation";
 import { Coordinates } from "@/src/domain/value-objects/Coordinates";
 
