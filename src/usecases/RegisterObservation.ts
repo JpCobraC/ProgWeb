@@ -15,10 +15,13 @@ export interface RegisterObservationDTO {
 /**
  * CASO DE USO: RegisterObservation
  * 
- * Orquestra a criação de uma nova observação:
- * 1. Instancia e valida as Coordenadas (Value Object).
- * 2. Gera um ID único e cria a Entidade Observation.
- * 3. Persiste no Repositório.
+ * 📌 RELAÇÃO NO DIAGRAMA DE CLASSE (UML):
+ * - Dependência: RegisterObservation depende de ObservationRepository (Interface), Observation (Entidade) e Coordinates (Value Object).
+ * 
+ * FLUXO DE EXECUÇÃO:
+ * 1. Instancia e valida o Value Object (Coordinates).
+ * 2. Gera o ID único e cria a Entidade (Observation).
+ * 3. Envia a entidade para o repositório salvar (save).
  */
 export class RegisterObservation {
     constructor(

@@ -8,11 +8,11 @@ import { RegisterObservation } from "../usecases/RegisterObservation";
 /**
  * FACTORY / CONTAINER (Injeção de Dependência via Singleton)
  * 
- * 💡 DICA PARA PROVA:
- * Para trocar de repositório na prova (ex: de AsyncStorage para InMemory):
- * Basta trocar 'AsyncStorageObservationRepository.getInstance()' por 'InMemoryObservationRepository.getInstance()'.
+ * 📌 RELAÇÃO NO DIAGRAMA DE CLASSE (UML):
+ * - Inversão de Dependência: O Container instancia o repositório concreto (AsyncStorageObservationRepository ou InMemoryObservationRepository)
+ *   e o injeta nos Casos de Uso. Os Casos de Uso dependem APENAS da interface ObservationRepository.
  * 
- * Exemplo de acesso nas telas:
+ * Exemplo de uso nas telas:
  * container.registerObservation.execute({ ... })
  * container.listObservations.execute()
  */
