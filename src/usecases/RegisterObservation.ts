@@ -1,0 +1,41 @@
+import { Observation } from "../domain/entities/Observation";
+import { ObservationRepository } from "../domain/repositories/ObservationRepository";
+import { Coordinates } from "../domain/value-objects/Coordinates";
+
+/**
+ * DTO (Data Transfer Object): Estrutura de dados recebida pela UI
+ */
+export interface RegisterObservationDTO {
+    latitude: number;
+    longitude: number;
+    photo: string;
+    description?: string;
+}
+
+/**
+ * CASO DE USO: RegisterObservation
+ * 
+ * Orquestra a criação de uma nova observação:
+ * 1. Instancia e valida as Coordenadas (Value Object).
+ * 2. Gera um ID único e cria a Entidade Observation.
+ * 3. Persiste no Repositório.
+ */
+export class RegisterObservation {
+    constructor(
+        private readonly repository: ObservationRepository
+    ) { }
+
+    public async execute(input: RegisterObservationDTO): Promise<Observation> {
+        const coordinates = new Coordinates(input.latitude, input.longitude);
+        const id = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15);
+        const observation = new Observation(
+            id,
+            coordinates,
+            input.photo,
+            input.description,
+            new Date()
+        );
+        await this.repository.save(observation);
+        return observation;
+    }
+}
